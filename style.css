@@ -4,7 +4,7 @@
     --muted: #647574;
     --forest: #174e43;
     --mint: #b7dfc8;
-    --paper: #f5f6ef;
+    --paper: #ffffff;
     --line: rgba(23, 42, 42, 0.16);
     --display: "Manrope", sans-serif;
     --body: "DM Sans", sans-serif;
@@ -102,11 +102,25 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     background-size: 12px 12px;
     opacity: .58;
     pointer-events: none;
-    -webkit-mask-image: radial-gradient(ellipse 42% 72% at 82% 50%, #000 8%, rgba(0, 0, 0, .8) 42%, transparent 100%);
-    mask-image: radial-gradient(ellipse 42% 72% at 82% 50%, #000 8%, rgba(0, 0, 0, .8) 42%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+    -webkit-mask-image: linear-gradient(90deg, transparent 22%, rgba(0, 0, 0, .28) 43%, #000 72%), linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .82) 48%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 22%, rgba(0, 0, 0, .28) 43%, #000 72%), linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .82) 48%, transparent 100%);
 }
 
-.hero-copy, .profile-wrap { position: relative; z-index: 2; }
+.hero::before {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: clamp(150px, 24vh, 260px);
+    content: "";
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .18) 34%, rgba(255, 255, 255, .72) 76%, #fff 100%);
+    pointer-events: none;
+}
+
+.hero-copy, .profile-wrap { position: relative; z-index: 3; }
 .hero-copy { min-width: 0; padding-inline: clamp(20px, 5vw, 72px); }
 .hero-scene-fallback { opacity: 0; }
 .hero-copy { animation: rise-in 650ms both; }
