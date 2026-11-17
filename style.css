@@ -77,7 +77,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     align-items: center;
     gap: 56px;
     padding: 72px 0 90px;
-    background: radial-gradient(ellipse at 74% 40%, rgba(183, 223, 200, .48), transparent 42%), linear-gradient(115deg, #f5f6ef 15%, #edf3eb 100%);
+    background:
+        radial-gradient(ellipse at 79% 46%, rgba(204, 151, 111, .22) 0%, rgba(183, 223, 200, .44) 28%, rgba(183, 223, 200, 0) 68%),
+        linear-gradient(112deg, #f5f6ef 0%, #f0f3eb 48%, #e5eee7 100%);
 }
 
 .hero-scene {
@@ -90,7 +92,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     pointer-events: none;
 }
 
-.hero-copy, .profile-wrap { position: relative; z-index: 1; }
+.hero::after {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    content: "";
+    background-image: radial-gradient(circle, rgba(23, 42, 42, .42) 1px, transparent 1.45px);
+    background-position: 0 0;
+    background-size: 12px 12px;
+    opacity: .58;
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(ellipse 42% 72% at 82% 50%, #000 8%, rgba(0, 0, 0, .8) 42%, transparent 100%);
+    mask-image: radial-gradient(ellipse 42% 72% at 82% 50%, #000 8%, rgba(0, 0, 0, .8) 42%, transparent 100%);
+}
+
+.hero-copy, .profile-wrap { position: relative; z-index: 2; }
+.hero-copy { min-width: 0; padding-inline: clamp(20px, 5vw, 72px); }
 .hero-scene-fallback { opacity: 0; }
 .hero-copy { animation: rise-in 650ms both; }
 .eyebrow { margin: 0 0 22px; color: var(--forest); font: 700 11px var(--display); letter-spacing: 0.13em; text-transform: uppercase; }
